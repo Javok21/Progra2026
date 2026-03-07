@@ -1,21 +1,31 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
-int no_binario;
-int decimal = 0, base = 1, ultimo_digito;
-
 int main()
 {
-    cout << "Ingrese un numero binario: ";
-    cin >> no_binario;
+    string binario;
+    int decimal = 0;
+    int base = 1;
 
-    while (no_binario > 0)
+    cout << "Ingrese un numero binario: ";
+    cin >> binario;
+
+    for (int i = binario.length() - 1; i >= 0; i--)
     {
-        ultimo_digito = no_binario % 10;
-        decimal += ultimo_digito * base;
+        if (binario[i] != '0' && binario[i] != '1')
+        {
+            cout << "Error: El numero ingresado no es binario." << endl;
+            return 0;
+        }
+
+        if (binario[i] == '1')
+        {
+            decimal += base;
+        }
+
         base *= 2;
-        no_binario /= 10;
     }
 
     cout << "El numero decimal es: " << decimal << endl;
